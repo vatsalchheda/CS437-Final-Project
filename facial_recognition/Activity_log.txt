@@ -1,0 +1,37 @@
+####################### 3 LOG FILE #######################
+
+
+ The smart lock RAVN is turned on ::: Sat Apr 29 04:31:51 2023
+
+PLEASE ENTER THE COMMON PASSWORD TO BEGIN 3-WAY AUTHORIZATION
+
+ The hash of common password entered by the user ::: 01b5943850fda234fb9c9ba95dc7a03f21d829aa58776f050a72f40e30d34c4d
+
+ The hash of common password saved in the system ::: 01b5943850fda234fb9c9ba95dc7a03f21d829aa58776f050a72f40e30d34c4d
+
+ MATCH SUCCESSFUL
+
+ STEP 1 ::: ATTEMPTING FACIAL RECOGNITION
+
+ FACE DETECTED ::: rishi
+
+ FACE Authorized ::: rishi
+
+ First LED turned on. 
+
+ Authorized user ::: rishi trying to unlock using their personal password.
+ Speech to text (hashed) ::: 10c16bdf5984951388362b0a5424b2cfed777f2589512e2699db2666dca516dd
+ Users hashed personal password ::: 10c16bdf5984951388362b0a5424b2cfed777f2589512e2699db2666dca516dd
+ Personal Password Matched.
+ Second LED turned on. 
+
+ Attempting Biometric authorization 
+
+ Biometric authorization successfull
+ ####################### WELCOME rishi#######################
+ Final LED turned on. 
+
+ Biometric authorization successfull
+ RAVN has been secured and locked.
+ RAVN closing time ::: Sat Apr 29 04:35:36 2023
+ ####################### END #######################

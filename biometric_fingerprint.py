@@ -14,11 +14,6 @@ def fingerprint():
 
         if ( f.verifyPassword() == False ):
             # if value is wrong, capture a snapshot
-            print('Downloading image (this take a while)...')
-            imageDestination =  tempfile.gettempdir() + '/fingerprint.bmp'
-            f.downloadImage(imageDestination)
-            print('The image was saved to "' + imageDestination + '".')
-            
             raise ValueError('The given fingerprint sensor password is wrong!')
 
     except Exception as e:
@@ -51,6 +46,10 @@ def fingerprint():
         # If no match is found, print a message and exit
         if (positionNumber == -1):
             print('No match found!')
+            print('Downloading image (this take a while)...')
+            imageDestination =  tempfile.gettempdir() + '/fingerprint.bmp'
+            f.downloadImage(imageDestination)
+            print('The image was saved to "' + imageDestination + '".')
             exit(0)
         else:
             # If a match is found, print the position number and accuracy score

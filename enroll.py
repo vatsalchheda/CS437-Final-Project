@@ -1,22 +1,13 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-"""
-PyFingerprint
-Copyright (C) 2015 Bastian Raschke <bastian.raschke@posteo.de>
-All rights reserved.
-
-"""
-
-import hashlib
+import time
 from pyfingerprint.pyfingerprint import PyFingerprint
 
 
-## Search for a finger
-##
-
+## Enrolls new finger
 ## Tries to initialize the sensor
-def fingerprint():
+def enroll_user():
     try:
         f = PyFingerprint('/dev/ttyUSB0', 57600, 0xFFFFFFFF, 0x00000000)
 
@@ -31,7 +22,7 @@ def fingerprint():
     ## Gets some sensor information
     print('Currently used templates: ' + str(f.getTemplateCount()) +'/'+ str(f.getStorageCapacity()))
 
-    ## Tries to search the finger and calculate hash
+    ## Tries to enroll new finger
     try:
         print('Waiting for finger...')
 
@@ -42,31 +33,37 @@ def fingerprint():
         ## Converts read image to characteristics and stores it in charbuffer 1
         f.convertImage(0x01)
 
-        ## Searchs template
+        ## Checks if finger is already enrolled
         result = f.searchTemplate()
-
         positionNumber = result[0]
-        accuracyScore = result[1]
 
-        if ( positionNumber == -1 ):
-            print('No match found!')
+        if ( positionNumber >= 0 ):
+            print('Template already exists at position #' + str(positionNumber))
             exit(0)
-        else:
-            print('Found template at position #' + str(positionNumber))
-            print('The accuracy score is: ' + str(accuracyScore))
 
-        ## OPTIONAL stuff
-        ##
+        print('Remove finger...')
+        time.sleep(2)
 
-        ## Loads the found template to charbuffer 1
-        f.loadTemplate(positionNumber, 0x01)
+        print('Waiting for same finger again...')
 
-        ## Downloads the characteristics of template loaded in charbuffer 1
-        characterics = str(f.downloadCharacteristics(0x01)).encode('utf-8')
+        ## Wait that finger is read again
+        while ( f.readImage() == False ):
+            pass
 
-        ## Hashes characteristics of template
-        print('SHA-2 hash of template: ' + hashlib.sha256(characterics).hexdigest())
-        return positionNumber
+        ## Converts read image to characteristics and stores it in charbuffer 2
+        f.convertImage(0x02)
+
+        ## Compares the charbuffers
+        if ( f.compareCharacteristics() == 0 ):
+            raise Exception('Fingers do not match')
+
+        ## Creates a template
+        f.createTemplate()
+
+        ## Saves template at new position number
+        positionNumber = f.storeTemplate()
+        print('Finger enrolled successfully!')
+        print('New template position #' + str(positionNumber))
 
     except Exception as e:
         print('Operation failed!')

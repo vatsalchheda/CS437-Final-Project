@@ -13,7 +13,7 @@ from config import emails
 def send_mail(mode=1, usr_name="None", new_usr="None"):
     # Replace these with your own email and password
     your_email = "cs437.ravn@gmail.com"
-    your_password = "ktstqhfmscaycekq"
+    your_password = "ktstqhfmscaycekq" #safe
 
     if mode == 1:
         # Define the sender, recipient, subject, and message

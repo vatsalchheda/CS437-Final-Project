@@ -16,7 +16,7 @@ from speech import speech_to_text
 from biometric_fingerprint import fingerprint
 from config import positions
 from config import pos_no, usr_no
-from example_enroll import enroll_user
+from enroll import enroll_user
 from headshots import take_screenshot
 from train_model import retrain_ravn
 from send_test_email import send_mail

@@ -44,6 +44,13 @@ This repository contains the code for a smart shared lock IoT application. The a
 7. For joint lock access, authorized users should follow the same 4-step authorization process one after the other within the allowed time window.
 
 
+## Result
+1. Adding a new user
+![Email Alert: Adding new user](https://github.com/vatsalchheda/CS437-Final-Project/blob/master/Images/New%20User%20Email.png "Email Alert: Adding new user")
+2. Intruder
+![Email Alert: Intruder](https://github.com/vatsalchheda/CS437-Final-Project/blob/master/Images/Intruder%20Email.png "Email Alert: Intruder")
+
+
 ## File Metrics
 
 - Total lines of code: 912
